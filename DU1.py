@@ -21,21 +21,32 @@ class Relation:
         else:
             return self
         
-    def union(self):
-       pass
+    def union(self, relation):
+        for i in relation:
+            if (i[0] not in self.set) | (i[1] not in self.set):
+                return self
+        return Relation(self.set, self.relation.union(relation))
 
-    def intersection(self):
-        pass
+    def intersection(self, relation):
+        return Relation(self.set, self.relation.intersection(relation))
 
-    def subtraction(self):
-        pass
+    def subtraction(self, relation):
+        return Relation(self.set, self.relation.difference(relation))
 
     def inverse(self):
-        pass
+        new_relation = s()
+        for i in self.relation:
+            new_relation = new_relation.add(i[:: -1])
+        return Relation(self.set, new_relation)
 
-    def composition(self):
-        pass
-
+    def composition(self, relation):
+        new_relation = s()
+        for i in self.relation:
+            for j in relation:
+                if i[1] == j[0]:
+                    new_relation = new_relation.add((i[0],j[1]))
+        return Relation(self.set, new_relation)
+    
     def isReflexive(self):
         pass
 
