@@ -47,14 +47,24 @@ class Relation:
                     new_relation = new_relation.add((i[0],j[1]))
         return Relation(self.set, new_relation)
     
-    def isReflexive(self):
-        pass
+     def isReflexive(self):
+        for i in self.set:
+            if ((i,i) not in self.relation):
+                return False
+        return True
 
     def isSymmetric(self):
-        pass
+        for i in self.relation:
+            if ((i[1],i[0]) not in self.relation):
+                return False
+        return True
 
     def isTransitive(self):
-        pass
+        for i in self.relation:
+            for j in self.relation:
+                if (i[1] == j[0]) & ((i[0],j[1]) not in self.relation):
+                    return False
+        return True
 
     def reflexiveTransitiveClosure(self):
         pass
