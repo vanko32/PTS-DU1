@@ -2,18 +2,25 @@ from pyrsistent import s
 
 
 class Relation:
-    def __init__(self):
-        pass
+    def __init__(self, set, relation):
+        self.set = set
+        self.relation = relation
 
-    def contains(self):
-        pass
-    
-    def add(self):
-        pass
+    def contains(self, tuple):
+        return self.relation.__contains__(tuple)
 
-    def remove(self):
-         pass
+    def add(self, tuple):
+        if (tuple[0] in self.set) & (tuple[1] in self.set):
+            return Relation(self.set, self.relation.add(tuple))
+        else:
+            return self
 
+    def remove(self, tuple):
+        if tuple in self.relation:
+            return Relation(self.set, self.relation.remove(tuple))
+        else:
+            return self
+        
     def union(self):
        pass
 
