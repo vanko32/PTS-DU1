@@ -20,7 +20,7 @@ class Relation:
             return Relation(self.set, self.relation.remove(tuple))
         else:
             return self
-        
+
     def union(self, relation):
         for i in relation:
             if (i[0] not in self.set) | (i[1] not in self.set):
@@ -46,7 +46,7 @@ class Relation:
                 if i[1] == j[0]:
                     new_relation = new_relation.add((i[0],j[1]))
         return Relation(self.set, new_relation)
-    
+
     def isReflexive(self):
         for i in self.set:
             if ((i,i) not in self.relation):
@@ -65,7 +65,7 @@ class Relation:
                 if (i[1] == j[0]) & ((i[0],j[1]) not in self.relation):
                     return False
         return True
-    
+
     def reflexiveTransitiveClosure(self):
         closure = self.relation
         for i in self.set:
@@ -82,7 +82,7 @@ class Relation:
             if closure  == current_closure:
                 break
             closure = current_closure
-            
+
         return Relation(self.set, closure)
 
 
@@ -91,5 +91,4 @@ def get_relation_class(set):
 
 
 if __name__ == "__main__":
-
-
+    pass
