@@ -47,7 +47,7 @@ class Relation:
                     new_relation = new_relation.add((i[0],j[1]))
         return Relation(self.set, new_relation)
     
-     def isReflexive(self):
+    def isReflexive(self):
         for i in self.set:
             if ((i,i) not in self.relation):
                 return False
@@ -65,13 +65,29 @@ class Relation:
                 if (i[1] == j[0]) & ((i[0],j[1]) not in self.relation):
                     return False
         return True
-
+    
     def reflexiveTransitiveClosure(self):
-        pass
+        closure = self.relation
+        for i in self.set:
+            closure = closure.add((i,i))
+
+        while True:
+            new_relation = s()
+            for i in closure:
+                for j in closure:
+                    if i[1] == j[0]:
+                        new_relation = new_relation.add((i[0], j[1]))
+
+            current_closure = closure | new_relation
+            if closure  == current_closure:
+                break
+            closure = current_closure
+            
+        return Relation(self.set, closure)
 
 
 def get_relation_class(set):
-    pass
+    return Relation(set, s())
 
 
 if __name__ == "__main__":
